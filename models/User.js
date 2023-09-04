@@ -1,8 +1,8 @@
 // Define Mongoose
-const mongoose = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 // Create a new instance of the Mongoose schema to define shape of each document
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   // Add individual properties and their types
   // Setting required to true will disallow null values
   username: {
@@ -25,19 +25,24 @@ const userSchema = new mongoose.Schema({
   },
   friends: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User', // This should match the model name you used for User
     },
   ],
   thoughts: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Thought', // This should match the model name you used for Thought
     },
   ],
-  // // Use built in date method to get current date
-  // lastAccessed: { type: Date, default: Date.now },
-});
+},
+{
+  toJSON: {
+    virtuals: true,
+  },
+  id: false,
+}
+);
 
 // Create a virtual property `friendsCount` that gets the amount of comments per post
 userSchema.virtual('friendsCount').get(function () {
@@ -47,6 +52,18 @@ userSchema.virtual('friendsCount').get(function () {
 // Using mongoose.model() to compile a model based on the schema
 // 'Users' is the name of the model
 // usersSchema is the name of the schema we are using to create a new instance of the model
-const User = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
+
+// const userData = [
+//   {
+//     username: 'allicris',
+//     email: 'allison@gmail.com'
+//   },
+// ];
+
+// User
+// .create({ name: 'User', users: userData })
+// .then(data => console.log(data))
+// .catch(err => console.log(err));
 
 module.exports = User;
