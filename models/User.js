@@ -54,16 +54,4 @@ userSchema.virtual('friendsCount').get(function () {
 // usersSchema is the name of the schema we are using to create a new instance of the model
 const User = model('User', userSchema);
 
-// const userData = [
-//   {
-//     username: 'allicris',
-//     email: 'allison@gmail.com'
-//   },
-// ];
-
-// User
-// .create({ name: 'User', users: userData })
-// .then(data => console.log(data))
-// .catch(err => console.log(err));
-
 module.exports = User;
