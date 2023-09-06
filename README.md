@@ -54,3 +54,6 @@ Walkthough Video: https://drive.google.com/file/d/1NkXB2Y9bIOniO2LQnQJkfeiWdFigJ
 ## Screenshots
 ![Users](./images/users.png)
 ![Thoughts](./images/thoughts.png)
+
+## Author
+Allison Serrano
